@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Happy Birthday</title>
+
+    <link
+        rel="stylesheet"
+        href="styles.css"
+    >
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js">
+    </script>
+
+    <script
+        type="module"
+        src="main.js"
+        defer>
+    </script>
+
+</head>
+
+
+<body>
+
+    <!-- =========================================
+         BIRTHDAY LOCK SCREEN
+    ========================================== -->
+
+    <div id="birthday-lock-screen">
+
+        <div class="countdown-container">
+
+            <p class="countdown-eyebrow">
+                SOMETHING IS WAITING...
+            </p>
+
+            <h1 class="countdown-title">
+                Almost time.
+            </h1>
+
+            <p class="countdown-subtitle">
+                The website unlocks on
+                <strong>29 August</strong>
+            </p>
+
+
+            <div
+                id="birthday-countdown"
+                class="birthday-countdown"
+            >
+
+                <div class="countdown-unit">
+
+                    <span
+                        id="countdown-days"
+                        class="countdown-number"
+                    >
+                        00
+                    </span>
+
+                    <span class="countdown-label">
+                        DAYS
+                    </span>
+
+                </div>
+
+
+                <span class="countdown-colon">
+                    :
+                </span>
+
+
+                <div class="countdown-unit">
+
+                    <span
+                        id="countdown-hours"
+                        class="countdown-number"
+                    >
+                        00
+                    </span>
+
+                    <span class="countdown-label">
+                        HOURS
+                    </span>
+
+                </div>
+
+
+                <span class="countdown-colon">
+                    :
+                </span>
+
+
+                <div class="countdown-unit">
+
+                    <span
+                        id="countdown-minutes"
+                        class="countdown-number"
+                    >
+                        00
+                    </span>
+
+                    <span class="countdown-label">
+                        MINUTES
+                    </span>
+
+                </div>
+
+
+                <span class="countdown-colon">
+                    :
+                </span>
+
+
+                <div class="countdown-unit">
+
+                    <span
+                        id="countdown-seconds"
+                        class="countdown-number"
+                    >
+                        00
+                    </span>
+
+                    <span class="countdown-label">
+                        SECONDS
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <p
+                id="countdown-status"
+                class="countdown-status"
+            >
+                SYSTEM LOCKED
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         SCROLL PROGRESS BAR
+    ========================================== -->
+
+    <div id="scroll-progress"></div>
+
+
+    <!-- =========================================
+         SVG GRAIN EFFECT
+    ========================================== -->
+
+    <svg class="grain">
+
+        <filter id="noise">
+
+            <feTurbulence
+                id="turbulence"
+                type="fractalNoise"
+                baseFrequency="0.05"
+                numOctaves="16"
+                stitchTiles="stitch"
+                seed="2"
+                result="noise"
+            />
+
+            <feColorMatrix
+                in="noise"
+                type="matrix"
+                values="
+                    0 0 0 0 0
+                    0 0 0 0 0
+                    0 0 0 0 0
+                    0.3 0.59 0.11 0 0
+                "
+            />
+
+        </filter>
+
+        <rect
+            width="100%"
+            height="100%"
+            filter="url(#noise)"
+        />
+
+    </svg>
+
+
+    <!-- =========================================
+         PAGE CONTENT
+    ========================================== -->
+
+    <div id="page-content">
+
+
+        <!-- BLACK SCREEN -->
+
+        <div>
+            <span class="black-screen"></span>
+        </div>
+
+
+        <!-- =====================================
+             AUDIO
+        ====================================== -->
+
+        <div>
+
+            <audio id="bday-audio">
+
+                <source
+                    src="Audio/HappyBirthday.mp3"
+                    type="audio/mpeg"
+                >
+
+                Your browser does not support
+                the audio element.
+
+            </audio>
+
+
+            <audio id="click-audio">
+
+                <source
+                    src="Audio/click.mp3"
+                    type="audio/mpeg"
+                >
+
+                Your browser does not support
+                the audio element.
+
+            </audio>
+
+
+            <audio id="background-audio">
+
+                <source
+                    src="Audio/background.mp3"
+                    type="audio/mpeg"
+                >
+
+                Your browser does not support
+                the audio element.
+
+            </audio>
+
+
+            <audio id="dance-audio">
+
+                <source
+                    src="Audio/DanceSong.mp3"
+                    type="audio/mpeg"
+                >
+
+                Your browser does not support
+                the audio element.
+
+            </audio>
+
+        </div>
+
+
+        <!-- =====================================
+             HERO
+        ====================================== -->
+
+        <header
+            class="hero"
+            id="start"
+        >
+
+            <div class="top-bar">
+
+                <h2 id="secret-logo">
+                    A.
+                </h2>
+
+
+                <div class="top-bar-right">
+
+                    <p id="display-money">
+                        Money: $
+                    </p>
+
+
+                    <button
+                        id="mute-toggle"
+                        class="mute-btn"
+                        type="button"
+                        aria-label="Mute audio"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <p class="eyebrow">
+
+                29 · AUGUST · A NOT VERY IMPORTANT DAY
+                FOR A DUMB PERSON
+
+            </p>
+
+
+            <h1 class="hero-title">
+
+                <span>
+                    A Very Happy
+                </span>
+
+                <span>
+                    <em>Birthday</em>
+                </span>
+
+                <span>
+                    Avigna
+                </span>
+
+            </h1>
+
+
+            <div class="hero-subtitle">
+
+                <p>
+
+                    A small gift to one very goofy,
+                    energetic and <br>
+
+                    also a very questionable human
+
+                </p>
+
+            </div>
+
+
+            <a
+                href="#about"
+                class="button"
+            >
+                START THE JOURNEY
+            </a>
+
+        </header>
+
+
+        <!-- =====================================
+             MAIN
+        ====================================== -->
+
+        <main>
+
+
+            <!-- INTRO -->
+
+            <section
+                class="intro"
+                id="about"
+            >
+
+                <div>
+
+                    <p class="serial-number">
+                        01 / The Subject
+                    </p>
+
+
+                    <h2>
+
+                        There are many ways to
+                        <br>
+                        describe
+                        <br>
+                        Avigna.
+
+                    </h2>
+
+                </div>
+
+
+                <p class="description">
+
+                    <span class="description-big">
+
+                        Emotionally smart...not really.
+                        Goofy. Energetic.
+                        A lover of dancing,
+                        movies and books.
+
+                    </span>
+
+                    <br>
+
+
+                    <span class="description-small">
+
+                        Smart....again, not really.
+                        Can make judgements that are reasonable
+                        to her...and only her.
+
+                        <br>
+                        <br>
+
+                        Avigna:
+                        Yeah, Perfect judgement.
+
+                        <br>
+
+                        others:
+                        🤨
+
+                    </span>
+
+                </p>
+
+            </section>
+
+
+            <!-- QUOTE -->
+
+            <section class="trust-text">
+
+                <p>
+
+                    <span class="quote-mark">
+                        "
+                    </span>
+
+                    <br>
+
+                    <span class="quote">
+
+                        I CALL AVIGNA A DIARY THAT STARTED ON ---
+                        <br>
+                        FEBURARY 10TH
+
+                    </span>
+
+                    <span class="quote-maker">
+
+                        — Neerav,
+                        pretty sick quote btw if u get it
+
+                    </span>
+
+                </p>
+
+            </section>
+
+
+            <!-- STATS -->
+
+            <section class="stats">
+
+                <p class="serial-number">
+                    02 / The Stats
+                </p>
+
+
+                <h2 class="section-header">
+
+                    Avigna, according to extremely
+                    reliable statistical data
+
+                </h2>
+
+
+                <div class="stat">
+
+                    <div class="stat-top">
+
+                        <span>GOOFINESS</span>
+                        <span>98%</span>
+
+                    </div>
+
+                    <div class="bar">
+                        <span style="width:98%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-top">
+
+                        <span>ENERGY</span>
+                        <span>ERROR 404</span>
+
+                    </div>
+
+                    <div class="bar">
+                        <span style="width:100%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-top">
+
+                        <span>EMOTIONAL INTELLIGENCE</span>
+                        <span>81%</span>
+
+                    </div>
+
+                    <div class="bar">
+                        <span style="width:81%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-top">
+
+                        <span>EXTRA CIRRICULAR</span>
+                        <span>75%</span>
+
+                    </div>
+
+                    <div class="bar">
+                        <span style="width:75%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-top">
+
+                        <span>JUDGEMENT</span>
+                        <span>WE CAN'T GO LOWER</span>
+
+                    </div>
+
+                    <div class="bar">
+                        <span style="width:0%"></span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- HOBBIES -->
+
+            <section class="hobbies">
+
+                <p class="serial-number">
+                    03 / Hobbies
+                </p>
+
+
+                <h2 class="section-header">
+
+                    Things Avigna Apparently Enjoys
+
+                </h2>
+
+
+                <div class="card">
+
+                    <article class="cards dance">
+
+                        <span class="emoji">
+                            💃
+                        </span>
+
+                        <h3>
+                            Dancing
+                        </h3>
+
+                        <p>
+                            Energy levels:
+                            suspiciously high.
+                        </p>
+
+                    </article>
+
+
+                    <article class="cards movies">
+
+                        <span class="emoji">
+                            🎬
+                        </span>
+
+                        <h3>
+                            Movies
+                        </h3>
+
+                        <p>
+                            Because apparently one
+                            can never watch just one.
+                        </p>
+
+                    </article>
+
+
+                    <article class="cards books">
+
+                        <span class="emoji">
+                            📚
+                        </span>
+
+                        <h3>
+                            Books
+                        </h3>
+
+                        <p>
+                            Escaping reality,
+                            but with better vocabulary.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- CHAT -->
+
+            <section class="chat-section">
+
+                <span id="locked-chat">
+                    🔒
+                </span>
+
+
+                <p class="serial-number">
+                    04 / A Small Conversation
+                </p>
+
+
+                <h2 class="section-header black">
+                    Wanna know a secret?
+                </h2>
+
+
+                <br>
+
+
+                <div id="chat">
+
+                    <div
+                        class="msg-card"
+                        id="msg-card"
+                    ></div>
+
+                </div>
+
+
+                <button
+                    id="nextMessage"
+                    class="button"
+                >
+                    NEXT MESSAGE →
+
+                </button>
+
+            </section>
+
+
+            <!-- FOOD -->
+
+            <section class="eat-section">
+
+                <p class="serial-number">
+                    04 / Food
+                </p>
+
+
+                <h2 class="section-header">
+                    Welcome to our Restaurant:
+                </h2>
+
+
+                <div class="food-cards">
+
+
+                    <div class="food-card">
+
+                        <button
+                            class="food-button"
+                            data-price="60"
+                            data-saturation="30"
+                        >
+                            Pizza
+                        </button>
+
+                        <p>
+
+                            <span>Price - 60</span>
+
+                            <br><br>
+
+                            Good choice
+                            <br>
+
+                            Hunger - 30
+                            <br>
+
+                            Excitement + 30
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="food-card">
+
+                        <button
+                            class="food-button"
+                            data-price="50"
+                            data-saturation="25"
+                        >
+                            Burger
+                        </button>
+
+                        <p>
+
+                            <span>Price - 50</span>
+
+                            <br><br>
+
+                            Good choice
+                            <br>
+
+                            Hunger - 25
+                            <br>
+
+                            Excitement + 30
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="food-card">
+
+                        <button
+                            class="food-button"
+                            data-price="25"
+                            data-saturation="12"
+                        >
+                            Momo
+                        </button>
+
+                        <p>
+
+                            <span>Price - 25</span>
+
+                            <br><br>
+
+                            Excellent choice
+                            <br>
+
+                            Hunger - 12
+                            <br>
+
+                            Excitement + 30
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="food-card">
+
+                        <button
+                            class="food-button"
+                            data-price="30"
+                            data-saturation="15"
+                        >
+                            Wonton
+                        </button>
+
+                        <p>
+
+                            <span>Price - 30</span>
+
+                            <br><br>
+
+                            Excellent choice
+                            <br>
+
+                            Hunger - 15
+                            <br>
+
+                            Excitement + 50
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hunger">
+
+                    <span>
+                        Hunger
+                    </span>
+
+                    <span class="hunger-percentage">
+                        0%
+                    </span>
+
+                </div>
+
+
+                <div class="hunger-bar">
+
+                    <span style="width:0%"></span>
+
+                </div>
+
+
+                <span id="afford-text"></span>
+
+            </section>
+
+
+            <!-- MESSAGE -->
+
+            <section class="ending">
+
+                <span id="locked-message">
+                    🔒
+                </span>
+
+
+                <p class="serial-number">
+                    05 / A message
+                </p>
+
+
+                <div class="message-area">
+
+                    <p
+                        class="message"
+                        id="message"
+                    >
+
+                        <strong>
+                            🎂Happy birthday, Avigna.🎂
+                        </strong>
+
+                        <br><br>
+
+                        I don't really have much to say
+                        to u that i havent already...
+                        but here is what I will say ->
+
+                        <br><br>
+
+                        you have been one of the best friends
+                        if not THE best friend i have had,
+                        its funny you know,
+                        how it started because I insulted u...
+                        Best insult definitely
+
+                        <br><br>
+
+                        I never thought that I would find
+                        a friend in u,
+                        well how would I even think that life
+                        could be so bizzare for me to make
+                        a friend ONLINE.
+
+                        <br><br>
+
+                        The Debate was well worth it,
+                        not only for the experience,
+                        but because I met a friend that
+                        I will truly remember.
+
+                        <br><br>
+
+                        In all honesty, I have changed a lot
+                        because of being your friend,
+                        I found sides of me i never knew existed...
+
+                        <br><br>
+
+                        Didn't think I could get comfortable
+                        with someone enough to share all my secrets.
+
+                        <br>
+
+                        Didn't think I could talk to someone
+                        for so long without being bored asf
+
+                        <br>
+
+                        Didn't think I could grow as a person...
+                        but I did...and a lot at that.
+
+                        <br><br>
+
+                        Things recently haven't been too good
+                        with u...
+                        with your "friends" being the way they are,
+                        exams on the horizon
+                        and with your friends making things
+                        unnecessarily stressful.
+
+                        <br><br>
+
+                        You know, its been so long that I have grown
+                        numb to ur friend's stupidity.
+
+                        <br>
+
+                        I wished to say this before
+                        but held back due to them being ur friends...
+
+                        <br><br>
+
+                        <strong>
+                            <em>
+                                YOUR FRIENDS...
+                                ARE ABSOLUTE MORONS
+                            </em>
+                        </strong>
+
+                        <br><br>
+
+                        I honestly wish that you find people
+                        who are actually good to you,
+                        understand you
+                        and side with you even in the hardest times.
+
+                        <br><br>
+
+                        <strong>
+                            Best of wishes for the next year
+                            and your life,
+                            may u reach heights that you always
+                            wished for and truly live....
+                            for urself
+                        </strong>
+
+                        <br><br>
+
+                        And btw,
+                        You are nice, smart and pretty
+                        and I hope no one makes you believe otherwise.
+
+                        <br><br>
+
+                        Alrrr, now just chill...
+                        and know that there are people who care
+                        for u and wish the best for u.
+
+                        <br><br>
+
+                        <strong>
+                            <em>
+                                BYEEEEE
+                            </em>
+                        </strong>
+
+                        <br><br>
+
+                        btw,
+                        this msg got a bit too serious,
+                        sooo for fun....
+
+                        <strong>
+                            <em>
+                                FACKK UUUU
+                            </em>
+                        </strong>
+
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- SHOP -->
+
+            <section class="shop-section">
+
+                <p class="serial-number">
+                    06 / Shopping
+                </p>
+
+
+                <h2 class="section-header black">
+                    Shop for hidden features:
+                </h2>
+
+
+                <div class="shop-option">
+
+                    <button
+                        class="shop-button button"
+                        data-price="500"
+                        data-unlock="conversation"
+                    >
+                        CONVERSATION
+                    </button>
+
+                    <p class="black">
+
+                        Interested in finding out
+                        the secrets in the conversation?
+
+                        <br>
+
+                        Buy now at the small price of 500$
+
+                    </p>
+
+                </div>
+
+
+                <div class="shop-option">
+
+                    <button
+                        class="shop-button button"
+                        data-price="1200"
+                        data-unlock="blur"
+                    >
+                        REMOVE HUNGER DEFECT
+                    </button>
+
+                    <p class="black">
+
+                        Interested in getting rid
+                        of that pesky blur effect
+
+                        <br>
+
+                        Buy now at the small price of 1200$
+
+                    </p>
+
+                </div>
+
+
+                <div class="shop-option">
+
+                    <button
+                        class="shop-button button"
+                        data-price="2500"
+                        data-unlock="message"
+                    >
+                        MESSAGE
+                    </button>
+
+                    <p class="black">
+
+                        Interested in finding out
+                        the message i left u
+
+                        <br>
+
+                        Buy now at the small price of 2500$
+
+                    </p>
+
+                </div>
+
+
+                <span
+                    id="shop-afford-text"
+                    class="black"
+                ></span>
+
+            </section>
+
+
+            <!-- LOCKED GIFT -->
+
+            <section
+                class="gift-section"
+                id="gift-locked-notice"
+            >
+
+                <p class="serial-number">
+                    06 / Best Wishes
+                </p>
+
+
+                <h2 class="section-header black no-margin">
+                    Not Yet
+                </h2>
+
+
+                <p class="black no-margin">
+                    Buy everything in the shop above to unlock this section...
+                </p>
+
+            </section>
+
+
+            <!-- UNLOCKED GIFT -->
+
+            <section
+                class="gift-section"
+                id="gift-section"
+                style="display:none;"
+            >
+
+                <p class="serial-number">
+                    06 / Best Wishes
+                </p>
+
+
+                <div class="gift-card">
+
+                    <h2 class="section-header black no-margin">
+
+                        🎂
+
+                        <em>
+                            Happy birthday Avigna
+                        </em>
+
+                        🎂
+
+                    </h2>
+
+
+                    <p class="black no-margin">
+
+                        Wishing you the best for your next 365 days...
+                        and exams
+
+                    </p>
+
+
+                    <button
+                        class="gift-button"
+                        id="confettiBtn"
+                    >
+                        Want a gift?
+                    </button>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================
+         AVIGNA TOAST
+    ========================================== -->
+
+    <div
+        id="avigna-toast"
+        class="avigna-toast"
+        aria-live="polite"
+    ></div>
+
+
+</body>
+
+<button
+    id="theme-switch"
+    class="theme-switch"
+    type="button"
+    aria-label="Switch website theme"
+>
+
+    <span class="theme-icon">
+        🌲
+    </span>
+
+    <span
+        id="theme-switch-text"
+        class="theme-switch-text"
+    >
+        BLUE MODE
+    </span>
+
+</button>
+
+</html>
